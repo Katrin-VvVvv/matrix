@@ -50,6 +50,28 @@ int maxSubSum(int** m, int n, int k) {
         }
     return maxSum;
 
+bool isMagic(int** m, int n) {
+    int sum = 0;
+    for (int j = 0; j < n; j++) sum += m[0][j];
+    for (int i = 0; i < n; i++) {
+        int s = 0;
+        for (int j = 0; j < n; j++) s += m[i][j];
+        if (s != sum) return false;
+    }
+    for (int j = 0; j < n; j++) {
+        int s = 0;
+        for (int i = 0; i < n; i++) s += m[i][j];
+        if (s != sum) return false;
+    }
+    int d1 = 0, d2 = 0;
+    for (int i = 0; i < n; i++) {
+        d1 += m[i][i];
+        d2 += m[i][n - 1 - i];
+    }
+    if (d1 != sum || d2 != sum) return false;
+    return true;
+}
+
 int main() {
     setlocale(LC_ALL, "");
     int n;
