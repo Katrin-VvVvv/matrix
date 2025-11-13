@@ -28,7 +28,15 @@ void printMatrix(int** m, int n) {
     }
 }
 
-
+void rotate90(int** m, int n) {
+    int** temp = createMatrix(n);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            temp[i][j] = m[n - 1 - j][i];
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            m[i][j] = temp[i][j];
+    deleteMatrix(temp, n);
 
 int main() {
     setlocale(LC_ALL, "");
