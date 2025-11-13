@@ -38,6 +38,18 @@ void rotate90(int** m, int n) {
             m[i][j] = temp[i][j];
     deleteMatrix(temp, n);
 
+int maxSubSum(int** m, int n, int k) {
+    int maxSum = -1e9;
+    for (int i = 0; i <= n - k; i++)
+        for (int j = 0; j <= n - k; j++) {
+            int sum = 0;
+            for (int di = 0; di < k; di++)
+                for (int dj = 0; dj < k; dj++)
+                    sum += m[i + di][j + dj];
+            if (sum > maxSum) maxSum = sum;
+        }
+    return maxSum;
+
 int main() {
     setlocale(LC_ALL, "");
     int n;
